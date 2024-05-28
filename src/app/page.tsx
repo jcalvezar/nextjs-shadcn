@@ -1,9 +1,15 @@
-import Image from "next/image";
+import Hero from "@/components/Home/Hero";
+// import Features from './components/Features';
+// import CallToAction from './components/CallToAction';
 
-export default function Home() {
+const HomePage = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Hola
-    </main>
+    <>
+      <Hero />
+      {/* <Features />
+      <CallToAction /> */}
+    </>
   );
-}
+};
+
+export default HomePage;

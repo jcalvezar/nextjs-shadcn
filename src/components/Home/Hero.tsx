@@ -1,51 +1,32 @@
-"use client";
+import * as React from "react";
 
-import styled from "styled-components";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const HeroSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #0070f3, #00f3a0);
-  color: white;
-  text-align: center;
-  padding: 20px;
-`;
-
-const HeroTitle = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 20px;
-`;
-
-const HeroSubtitle = styled.p`
-  font-size: 1.5rem;
-  margin-bottom: 40px;
-`;
-
-const HeroButton = styled.a`
-  background: white;
-  color: #0070f3;
-  padding: 15px 30px;
-  border-radius: 25px;
-  font-size: 1.25rem;
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    background: #f0f0f0;
-  }
-`;
-
-const Hero = () => {
+export default function CarouselSpacing() {
   return (
-    <HeroSection>
-      <HeroTitle>Welcome to Car Resellers</HeroTitle>
-      <HeroSubtitle>Your trusted partner in finding the best cars</HeroSubtitle>
-      <HeroButton href="#features">Explore Features</HeroButton>
-    </HeroSection>
+    <Carousel className="w-full max-w-sm">
+      <CarouselContent className="-ml-1">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
+            <div className="p-1">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center p-6">
+                  <span className="text-2xl font-semibold">{index + 1}</span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   );
-};
-
-export default Hero;
+}

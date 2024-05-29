@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import { MainNav } from "@/components/Home/main-nav";
+import { SiteFooter } from "@/components/Home/site-footer";
+import { buttonVariants } from "@/components/ui/button";
+import { marketingConfig } from "@/config/marketing";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -26,7 +31,26 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        {children}
+        <div className="flex min-h-screen flex-col">
+          <header className="container z-40 bg-background">
+            <div className="flex h-20 items-center justify-between py-6">
+              <MainNav items={marketingConfig.mainNav} />
+              <nav>
+                <Link
+                  href="/login"
+                  className={cn(
+                    buttonVariants({ variant: "secondary", size: "sm" }),
+                    "px-4"
+                  )}
+                >
+                  Login
+                </Link>
+              </nav>
+            </div>
+          </header>
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );
